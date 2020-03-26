@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ilya/CLionProjects/transcoder/main.cpp
+libavcodec/avcodec.h
+-
+libavformat/avformat.h
+-
+libavfilter/avfilter.h
+-
+libavutil/log.h
+-
+libavfilter/buffersink.h
+-
+libavfilter/buffersrc.h
+-
+libavutil/opt.h
+-
+libavutil/pixdesc.h
+-
+
