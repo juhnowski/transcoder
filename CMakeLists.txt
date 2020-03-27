@@ -33,4 +33,5 @@ add_executable(transcoder main.cpp)
 
 target_link_libraries(transcoder  ${AVCODEC_LIBRARY} ${AVFORMAT_LIBRARY} ${AVUTIL_LIBRARY} ${SWSCALE_LIBRARY} ${AVFILTER_LIBRARY})
 
-configure_file(1.mp3 1.mp3 COPYONLY)
+#configure_file(1.mp3 1.mp3 COPYONLY)
+configure_file(test_2.sdp test_2.sdp COPYONLY)

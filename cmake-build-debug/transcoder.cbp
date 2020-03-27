@@ -89,10 +89,10 @@
 		<Unit filename="/home/ilya/CLionProjects/transcoder/main.cpp">
 			<Option target="transcoder"/>
 		</Unit>
-		<Unit filename="/home/ilya/CLionProjects/transcoder/1.mp3">
+		<Unit filename="/home/ilya/CLionProjects/transcoder/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/ilya/CLionProjects/transcoder/CMakeLists.txt">
+		<Unit filename="/home/ilya/CLionProjects/transcoder/test_2.sdp">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 		<Unit filename="/home/ilya/CLionProjects/transcoder/../../../../usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake">

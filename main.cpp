@@ -40,17 +40,33 @@ extern "C" {
 
 static AVFormatContext *ifmt_ctx;
 static AVFormatContext *ofmt_ctx;
+
 typedef struct FilteringContext {
     AVFilterContext *buffersink_ctx;
     AVFilterContext *buffersrc_ctx;
     AVFilterGraph *filter_graph;
 } FilteringContext;
+
 static FilteringContext *filter_ctx;
+
+void initialize_avformat_context(AVFormatContext *&fctx, const char *format_name)
+{
+    int ret = avformat_alloc_output_context2(&fctx, nullptr, format_name, nullptr);
+    if (ret < 0)
+    {
+        av_log(NULL, AV_LOG_ERROR,"Could not allocate output format context!\n");
+        exit(1);
+    }
+}
+
 static int open_input_file(const char *filename)
 {
     int ret;
     unsigned int i;
-    ifmt_ctx = NULL;
+    //ifmt_ctx = NULL;
+    initialize_avformat_context(ifmt_ctx, "rtp");
+    ifmt_ctx->protocol_whitelist = "file,tcp,rtmp,udp,rtp";
+
     if ((ret = avformat_open_input(&ifmt_ctx, filename, NULL, NULL)) < 0) {
         av_log(NULL, AV_LOG_ERROR, "Cannot open input file\n");
         return ret;
@@ -180,6 +196,7 @@ static int init_filter(FilteringContext* fctx, AVCodecContext *dec_ctx,
     AVFilterInOut *outputs = avfilter_inout_alloc();
     AVFilterInOut *inputs  = avfilter_inout_alloc();
     AVFilterGraph *filter_graph = avfilter_graph_alloc();
+
     if (!outputs || !inputs || !filter_graph) {
         ret = AVERROR(ENOMEM);
         goto end;
@@ -414,6 +431,8 @@ static int flush_encoder(unsigned int stream_index)
 
 int main(int argc, char **argv)
 {
+    setenv("OPENCV_FFMPEG_CAPTURE_OPTIONS", "protocol_whitelist;file,rtp,udp", 1);
+
     int ret;
     AVPacket packet = { .data = NULL, .size = 0 };
     AVFrame *frame = NULL;

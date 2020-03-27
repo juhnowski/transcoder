@@ -7,11 +7,11 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "../1.mp3"
   "../CMakeLists.txt"
   "CMakeFiles/3.15.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.15.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.15.3/CMakeSystem.cmake"
+  "../test_2.sdp"
   "/home/ilya/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/CMakeCInformation.cmake"
   "/home/ilya/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/CMakeCXXInformation.cmake"
   "/home/ilya/clion-2019.3.4/bin/cmake/linux/share/cmake-3.15/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -50,7 +50,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "1.mp3"
+  "test_2.sdp"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
