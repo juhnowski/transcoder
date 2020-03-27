@@ -92,7 +92,7 @@
 		<Unit filename="/home/ilya/CLionProjects/transcoder/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/ilya/CLionProjects/transcoder/test_2.sdp">
+		<Unit filename="/home/ilya/CLionProjects/transcoder/audio.sdp">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 		<Unit filename="/home/ilya/CLionProjects/transcoder/../../../../usr/local/lib/cmake/opencv4/OpenCVConfig-version.cmake">

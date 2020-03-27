@@ -63,11 +63,11 @@ static int open_input_file(const char *filename)
 {
     int ret;
     unsigned int i;
-    //ifmt_ctx = NULL;
-    initialize_avformat_context(ifmt_ctx, "rtp");
-    ifmt_ctx->protocol_whitelist = "file,tcp,rtmp,udp,rtp";
+    ifmt_ctx = NULL;
+    AVDictionary *d = NULL;
+    av_dict_set(&d, "protocol_whitelist", "file,udp,rtp", 0);
 
-    if ((ret = avformat_open_input(&ifmt_ctx, filename, NULL, NULL)) < 0) {
+    if ((ret = avformat_open_input(&ifmt_ctx, filename, NULL, &d)) < 0) {
         av_log(NULL, AV_LOG_ERROR, "Cannot open input file\n");
         return ret;
     }
