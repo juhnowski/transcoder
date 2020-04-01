@@ -83,9 +83,22 @@ static int open_input_file(const char *filename)
         /* Reencode video & audio and remux subtitles etc. */
         if (codec_ctx->codec_type == AVMEDIA_TYPE_VIDEO
             || codec_ctx->codec_type == AVMEDIA_TYPE_AUDIO) {
-            /* Open decoder */
-            ret = avcodec_open2(codec_ctx,
-                                avcodec_find_decoder(codec_ctx->codec_id), NULL);
+
+            if (codec_ctx->codec_type == AVMEDIA_TYPE_VIDEO) {
+//                AVDictionary *codec_options = nullptr;
+//                av_dict_set(&codec_options, "profile", "high444", 0);
+//                av_dict_set(&codec_options, "preset", "superfast", 0);
+//                av_dict_set(&codec_options, "tune", "zerolatency", 0);
+                ret = avcodec_open2(codec_ctx,
+                                    avcodec_find_decoder(codec_ctx->codec_id), NULL);
+            } else {
+                /* Open decoder */
+                ret = avcodec_open2(codec_ctx,
+                                    avcodec_find_decoder(codec_ctx->codec_id), NULL);
+
+            }
+
+
             if (ret < 0) {
                 av_log(NULL, AV_LOG_ERROR, "Failed to open decoder for stream #%u\n", i);
                 return ret;
@@ -105,7 +118,7 @@ static int open_output_file(const char *filename)
     int ret;
     unsigned int i;
     ofmt_ctx = NULL;
-    avformat_alloc_output_context2(&ofmt_ctx, NULL, NULL, filename);
+    avformat_alloc_output_context2(&ofmt_ctx, NULL, "flv", nullptr);
     if (!ofmt_ctx) {
         av_log(NULL, AV_LOG_ERROR, "Could not create output context\n");
         return AVERROR_UNKNOWN;
@@ -138,6 +151,12 @@ static int open_output_file(const char *filename)
                 enc_ctx->pix_fmt = encoder->pix_fmts[0];
                 /* video time_base can be set to whatever is handy and supported by encoder */
                 enc_ctx->time_base = dec_ctx->time_base;
+                AVDictionary *codec_options = nullptr;
+
+                av_dict_set(&codec_options, "profile", "high444", 0);
+                av_dict_set(&codec_options, "preset", "superfast", 0);
+                av_dict_set(&codec_options, "tune", "zerolatency", 0);
+                ret = avcodec_open2(enc_ctx, encoder, &codec_options);
             } else {
                 enc_ctx->sample_rate = dec_ctx->sample_rate;
                 enc_ctx->channel_layout = dec_ctx->channel_layout;
@@ -145,9 +164,10 @@ static int open_output_file(const char *filename)
                 /* take first format from list of supported formats */
                 enc_ctx->sample_fmt = encoder->sample_fmts[0];
                 enc_ctx->time_base = (AVRational){1, enc_ctx->sample_rate};
+                ret = avcodec_open2(enc_ctx, encoder, NULL);
             }
             /* Third parameter can be used to pass settings to encoder */
-            ret = avcodec_open2(enc_ctx, encoder, NULL);
+
             if (ret < 0) {
                 av_log(NULL, AV_LOG_ERROR, "Cannot open video encoder for stream #%u\n", i);
                 return ret;
@@ -434,7 +454,7 @@ int main(int argc, char **argv)
     setenv("OPENCV_FFMPEG_CAPTURE_OPTIONS", "protocol_whitelist;file,rtp,udp", 1);
 
     int ret;
-    AVPacket packet = { .data = NULL, .size = 0 };
+    AVPacket packet = { 0 };
     AVFrame *frame = NULL;
     enum AVMediaType type;
     unsigned int stream_index;

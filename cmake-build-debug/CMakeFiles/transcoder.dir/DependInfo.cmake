@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ilya/CLionProjects/transcoder/main.cpp" "/home/ilya/CLionProjects/transcoder/cmake-build-debug/CMakeFiles/transcoder.dir/main.cpp.o"
+  "/home/ilya/transcoder/main.cpp" "/home/ilya/transcoder/cmake-build-debug/CMakeFiles/transcoder.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

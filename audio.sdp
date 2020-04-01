@@ -1,8 +1,0 @@
-v=0
-o=- 0 0 IN IP4 127.0.0.1
-s=Shout (Tears For Fears)
-c=IN IP4 127.0.0.1
-t=0 0
-a=tool:libavformat 58.20.100
-m=audio 6666 RTP/AVP 14
-b=AS:320

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ilya/CLionProjects/transcoder/main.cpp
+/home/ilya/transcoder/main.cpp
 libavcodec/avcodec.h
 -
 libavformat/avformat.h

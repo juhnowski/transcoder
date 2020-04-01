@@ -1,4 +1,4 @@
-# Install script for directory: /home/ilya/CLionProjects/transcoder
+# Install script for directory: /home/ilya/transcoder
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ilya/CLionProjects/transcoder/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ilya/transcoder/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
